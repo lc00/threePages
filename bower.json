@@ -1,0 +1,22 @@
+{
+  "name": "threePages",
+  "version": "0.0.0",
+  "authors": [
+    "lc00 <leannecheung00@gmail.com>"
+  ],
+  "description": "three pages",
+  "main": "index.html",
+  "moduleType": [
+    "es6",
+    "globals",
+    "node"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
