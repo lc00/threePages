@@ -34,7 +34,7 @@ module.exports = function(grunt) {
 			server: {
 				files: ['server/**/*.js'],
 				// perform jshint on all the .js files under server
-				tasks: ['jshint:server'],
+				tasks: ['jshint:server', 'express:dev'],
 				options: {
 					spawn: false,
 				}
@@ -160,6 +160,35 @@ module.exports = function(grunt) {
 					{expand: true, cwd: 'client/dev', src: ["images/**", 'views/**', 'index.html'], dest: "client/prod/"}
 				] 
 			}
+		},
+		env: {
+			options: {},
+			dev: {
+				PORT: 7000,
+				CLIENT_DIR: 'dev'
+			},
+			prod: {
+				PORT: 6500,
+				CLIENT_DIR: 'prod',
+			}
+		},
+		express: {
+			dev: {
+				options: {
+					script: 'server/app.js',
+					output: 'this app is listening at port number 7000'
+				}
+			},
+			prod: {
+				options: {
+					script: 'server/app.js',
+					output: 'this app is listening at port number 6500',
+					// keeps this sub-task/server running; therefore, express.prod is the last task
+					// in the lineup for 'grunt prod'
+					background: false
+				}
+			}
+
 		}
 	});
 
@@ -170,9 +199,11 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-contrib-uglify');
 	grunt.loadNpmTasks('grunt-contrib-cssmin');	
 	grunt.loadNpmTasks('grunt-contrib-copy');
+	grunt.loadNpmTasks('grunt-env');
+	grunt.loadNpmTasks('grunt-express-server');
 
 	grunt.registerTask('default', ['watch']);
-	grunt.registerTask('dev', ['sails-linker:dev-bower-JS', 'sails-linker:dev-local-JS', 'sails-linker:dev-bower-CSS','sails-linker:dev-local-CSS',
+	grunt.registerTask('dev', ['env:dev','sails-linker:dev-bower-JS', 'sails-linker:dev-local-JS', 'sails-linker:dev-bower-CSS','sails-linker:dev-local-CSS', 'express:dev',
  'watch']);
-	grunt.registerTask('prod', ['uglify', 'cssmin', 'copy', 'sails-linker:prod-local-JS', 'sails-linker:prod-local-CSS', 'sails-linker:prod-bower-JS', 'sails-linker:prod-bower-CSS']);
+	grunt.registerTask('prod', ['env:prod', 'uglify', 'cssmin', 'copy', 'sails-linker:prod-local-JS', 'sails-linker:prod-local-CSS', 'sails-linker:prod-bower-JS', 'sails-linker:prod-bower-CSS', 'express:prod']);
 };
