@@ -10,7 +10,7 @@ log1(app);
 
 webRoutes(app);
 
-// process is	 window for browser
+// process is	the window(global object) for node
 var port = process.env.PORT;
 app.listen(port, function(){
 	console.log('this app is listening at port number ' + port);

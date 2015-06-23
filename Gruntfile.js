@@ -1,12 +1,12 @@
 var bowerJsFiles = [
-	'bower_components/angular/angular.js'
+	'bower_components/angular/angular.js', 'bower_components/angular-ui-router/release/angular-ui-router.js'
 	];
 var bowerCssFiles = [
 	'bower_components/bootstrap/dist/css/bootstrap.css'
 ];
 
 var allDevJsFiles = [
-	'bower_components/angular/angular.js', 'client/dev/**/*.js'
+	'bower_components/angular/angular.js', 'client/dev/scripts/*.js'
 ];
 var allDevCssFiles = [
 	'bower_components/bootstrap/dist/css/bootstrap.css', 'client/dev/**/*.css'
@@ -21,29 +21,69 @@ module.exports = function(grunt) {
 			gruntfile: {
 				// '**/' means search up to any number of directories
 				files: ['Gruntfile.js'],
-				// perform jshint on Gruntfile.js
+				// perform jshint on Gruntfile.js, inject stuff to index.html
 				tasks: [
 					'jshint:gruntfile',
 					'sails-linker:dev-bower-JS',
-					'sails-linker:dev-local-JS'
+					'sails-linker:dev-local-JS',
+					'sails-linker:dev-bower-CSS',
+					'sails-linker:dev-local-CSS'
 				],
 				options: {
 					spawn: false,
 				}
 			},
+			// client is a sub-task of watch
+			client: {
+				files: [
+					'client/dev/*.js', 
+					'client/dev/scripts/*.js',
+					'client/dev/styles/*.css'
+				],
+				tasks: [
+					'jshint:client',
+					'sails-linker:dev-local-JS',
+					'sails-linker:dev-local-CSS'
+				],
+				options: {
+					spawn: false
+				}
+			},
+			clientTests: {
+				files: ['client/dev/tests/*.js'],
+				tasks: ['jshint:clientTests'],
+				options: {
+					spawn: false
+				}
+			},
+
+			// server is a sub-task of watch
 			server: {
 				files: ['server/**/*.js'],
-				// perform jshint on all the .js files under server
-				tasks: ['jshint:server', 'express:dev'],
+				// perform jshint on all the .js files under server, restart server under dev environment
+				tasks: [
+					'jshint:server',
+				  'express:dev'
+				],
 				options: {
 					spawn: false,
+				}
+			},
+			serverTests: {
+				files: ['server/tests/*.js'],
+				tasks: ['jshint:serverTests'],
+				options: {
+					spawn: false
 				}
 			}
 		},
 		jshint: {
-			all: ['Gruntfile.js', 'server/**/*.js'],
+			all: ['Gruntfile.js', 'client/dev/**/*.js', 'server/**/*.js'],
 			gruntfile: ['Gruntfile.js'],
-			server: ['server/**/*.js']
+			client: ['client/dev/**/*.js'],
+			clientTests: ['client/dev/tests/*.js'],
+			server: ['server/**/*.js'],
+			serverTests: ['server/tests/*.js']
 		},
 		// sails-linker injects html tags 
 		'sails-linker': {
@@ -67,7 +107,7 @@ module.exports = function(grunt) {
 					appRoot: 'client/dev'
 				},
 				files: {
-					'client/dev/index.html': ['client/dev/**/*.js']
+					'client/dev/index.html': ['client/dev/scripts/*.js']
 				}
 			},
 			'dev-bower-CSS': {

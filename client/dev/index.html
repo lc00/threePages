@@ -9,18 +9,22 @@
 
 	<!-- START LOCAL CSS INJECT -->
 	<link rel="stylesheet" type="text/css" href="/styles/test.css"></link>
+	<link rel="stylesheet" type="text/css" href="/styles/test123.css"></link>
 	<!-- END INJECT -->
 </head>
-<body>
+<body ng-app='threePages'>
 
-<h1>boo</h1>
+<h1 class='h1class'>boo</h1>
 
 <!-- START BOWER JS INJECT -->
 <script src="/lib/angular/angular.js"></script>
+<script src="/lib/angular-ui-router/release/angular-ui-router.js"></script>
 <!-- END INJECT -->
 
 <!-- START LOCAL JS INJECT -->
+<script src="/scripts/app.js"></script>
 <script src="/scripts/test.js"></script>
+<script src="/scripts/test123.js"></script>
 <!-- END INJECT -->
 </body>
 </html>
