@@ -8,23 +8,38 @@
 	<!-- END INJECT -->
 
 	<!-- START LOCAL CSS INJECT -->
-	<link rel="stylesheet" type="text/css" href="/styles/test.css"></link>
-	<link rel="stylesheet" type="text/css" href="/styles/test123.css"></link>
+	<link rel="stylesheet" type="text/css" href="/styles/toDo.css"></link>
 	<!-- END INJECT -->
 </head>
 <body ng-app='threePages'>
+	<div class='container'>
+		<h3>To Do List</h3>
+		<ul class="nav nav-tabs">
+		  <li>
+		  	<a ui-sref='toDo' id='toDoLink'>todo
+		  	</a>
+		  </li>
+		  <li>
+		  	<a ui-sref='archive' id='archiveLink'>archive
+		  	</a>
+		  </li>
+		</ul>
+		<section ui-view>
+			
+		</section>
+	</div>
 
-<h1 class='h1class'>boo</h1>
 
-<!-- START BOWER JS INJECT -->
-<script src="/lib/angular/angular.js"></script>
-<script src="/lib/angular-ui-router/release/angular-ui-router.js"></script>
-<!-- END INJECT -->
 
-<!-- START LOCAL JS INJECT -->
-<script src="/scripts/app.js"></script>
-<script src="/scripts/test.js"></script>
-<script src="/scripts/test123.js"></script>
-<!-- END INJECT -->
+	<!-- START BOWER JS INJECT -->
+	<script src="/lib/angular/angular.js"></script>
+	<script src="/lib/angular-ui-router/release/angular-ui-router.js"></script>
+	<!-- END INJECT -->
+
+	<!-- START LOCAL JS INJECT -->
+	<script src="/scripts/app.js"></script>
+	<script src="/scripts/controllers/archiveController.js"></script>
+	<script src="/scripts/controllers/toDoController.js"></script>
+	<!-- END INJECT -->
 </body>
 </html>

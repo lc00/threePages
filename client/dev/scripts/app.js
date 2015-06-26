@@ -1,12 +1,19 @@
 (function(){
-	var app = angular.module('threePages', []);
+	var app = angular.module('threePages', ['ui.router']);
 
-	// app.config(function($stateProvider, $urlRouterProvider){
-	// 	$urlRouterProvider.otherwise('/');
-	// 	$stateProvider
-	// 		.state('/', {
-	// 			url: '',
-	// 			templateUrl: '../views/page1.html'
-	// 		})
-	// });
+	app.config(function($stateProvider, $urlRouterProvider){
+		$urlRouterProvider.otherwise('/toDo');
+
+		$stateProvider		
+			.state('toDo', {
+				url: '/toDo',
+				controller: 'ToDoController',
+				templateUrl: '../views/toDo.html'
+			})
+			.state('archive', {
+				url: '/archive',
+				controller: 'ArchiveController',
+				templateUrl: '../views/archive.html'
+			});
+	});
 }());	

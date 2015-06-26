@@ -6,7 +6,7 @@ var bowerCssFiles = [
 ];
 
 var allDevJsFiles = [
-	'bower_components/angular/angular.js', 'client/dev/scripts/*.js'
+	'bower_components/angular/angular.js', 'client/dev/scripts/**/*.js'
 ];
 var allDevCssFiles = [
 	'bower_components/bootstrap/dist/css/bootstrap.css', 'client/dev/**/*.css'
@@ -36,9 +36,8 @@ module.exports = function(grunt) {
 			// client is a sub-task of watch
 			client: {
 				files: [
-					'client/dev/*.js', 
-					'client/dev/scripts/*.js',
-					'client/dev/styles/*.css'
+					'client/dev/scripts/**/*.js',
+					'client/dev/styles/**/*.css'
 				],
 				tasks: [
 					'jshint:client',
@@ -50,7 +49,7 @@ module.exports = function(grunt) {
 				}
 			},
 			clientTests: {
-				files: ['client/dev/tests/*.js'],
+				files: ['client/dev/tests/**/*.js'],
 				tasks: ['jshint:clientTests'],
 				options: {
 					spawn: false
@@ -70,7 +69,7 @@ module.exports = function(grunt) {
 				}
 			},
 			serverTests: {
-				files: ['server/tests/*.js'],
+				files: ['server/tests/**/*.js'],
 				tasks: ['jshint:serverTests'],
 				options: {
 					spawn: false
@@ -81,9 +80,9 @@ module.exports = function(grunt) {
 			all: ['Gruntfile.js', 'client/dev/**/*.js', 'server/**/*.js'],
 			gruntfile: ['Gruntfile.js'],
 			client: ['client/dev/**/*.js'],
-			clientTests: ['client/dev/tests/*.js'],
+			clientTests: ['client/dev/tests/**/*.js'],
 			server: ['server/**/*.js'],
-			serverTests: ['server/tests/*.js']
+			serverTests: ['server/tests/**/*.js']
 		},
 		// sails-linker injects html tags 
 		'sails-linker': {
@@ -107,7 +106,7 @@ module.exports = function(grunt) {
 					appRoot: 'client/dev'
 				},
 				files: {
-					'client/dev/index.html': ['client/dev/scripts/*.js']
+					'client/dev/index.html': ['client/dev/scripts/**/*.js']
 				}
 			},
 			'dev-bower-CSS': {
@@ -129,7 +128,7 @@ module.exports = function(grunt) {
 				appRoot: 'client/dev'
 				},
 				files: {
-					'client/dev/index.html': ['client/dev/**/*.css']
+					'client/dev/index.html': ['client/dev/styles/**/*.css']
 				}
 			},
 
