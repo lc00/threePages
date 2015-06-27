@@ -1,0 +1,11 @@
+<section class='container'>
+	<div ng-repeat='item in toDoList'>
+		<span><input type='checkbox' ng-model='item.done' ></span>
+		<span id='{{$index}}' class="done-{{item.done}}">{{item.name}}</span>	
+	</div>
+	<form ng-submit='add(itemInput)'>
+		<input type='text' placeholder='add to-do here' ng-model='itemInput'/>
+		<button id='enterBtn' type='submit'>Enter</button>		
+	</form>
+	<button id='archiveBtn' ng-click='archive()'>archive items</button>
+</section>	
