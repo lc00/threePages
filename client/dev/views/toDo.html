@@ -1,6 +1,6 @@
 <section class='container'>
 	<div ng-repeat='item in toDoList'>
-		<span><input type='checkbox' ng-model='item.done' ></span>
+		<span><input type='checkbox' ng-model='item.done' ng-click='updateDone(item)'></span>
 		<span id='{{$index}}' class="done-{{item.done}}">{{item.name}}</span>	
 	</div>
 	<form ng-submit='add(itemInput)'>

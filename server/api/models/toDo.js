@@ -2,7 +2,8 @@ var mongoose = require('mongoose');
 
 var toDoSchema = mongoose.Schema({
 	name: String,
-	done: Boolean
+	done: Boolean,
+	archive: Boolean
 
 });
 

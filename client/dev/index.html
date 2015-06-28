@@ -15,11 +15,11 @@
 	<div class='container'>
 		<h3>To Do List</h3>
 		<ul class="nav nav-tabs">
-		  <li>
+		  <li ui-sref-active='active'>
 		  	<a ui-sref='toDo' id='toDoLink'>todo
 		  	</a>
 		  </li>
-		  <li>
+		  <li ui-sref-active='active'>
 		  	<a ui-sref='archive' id='archiveLink'>archive
 		  	</a>
 		  </li>
@@ -40,6 +40,7 @@
 	<script src="/scripts/app.js"></script>
 	<script src="/scripts/controllers/archiveController.js"></script>
 	<script src="/scripts/controllers/toDoController.js"></script>
+	<script src="/scripts/services/archive.js"></script>
 	<!-- END INJECT -->
 </body>
 </html>
