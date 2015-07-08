@@ -4,6 +4,7 @@ var clientDir = process.env.CLIENT_DIR;
 
 //webRoutes are all the api requests by index.html on the browser side
 var webRoutes = function(app){
+	// serve files that has routes that have '/lib' from '/../../bower_components' directory
 	app.use('/lib', express.static(__dirname + '/../../bower_components'));
 
 	// serves all files under 
@@ -28,7 +29,7 @@ var webRoutes = function(app){
 			if(err) return res.sendStatus(err.status);
 
 			console.log('index.html is sent');
-
+			
 		});
 	});
 };

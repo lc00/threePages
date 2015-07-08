@@ -19,10 +19,11 @@ app.use(bodyParser.json());
 //on the request object after the middleware (i.e. req.body). 
 //This object will contain key-value pairs, where the value can 
 //be a string or array (when extended is false), or any type 
-//(when extended is true).
+//(when extended is	 true).
 app.use(bodyParser.urlencoded({extended: true}));
 
-log1(app);
+// log1(app);
+app.use(log1);
 
 toDoRoutes(app);
 webRoutes(app);
